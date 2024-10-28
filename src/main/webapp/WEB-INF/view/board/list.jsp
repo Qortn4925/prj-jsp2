@@ -52,7 +52,7 @@
     </div>
 </div>
 
-<%-- 페이지네이셩--%>
+<%-- 페이지네이셩  todo--%>
 
 <div class=" d-flex justify-content-center">
     <nav aria-label="Page navigation example">
