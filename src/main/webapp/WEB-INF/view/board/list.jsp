@@ -60,14 +60,19 @@
             <li class="page-item">
                 <a class="page-link" href="#">Previous</a>
             </li>
-            <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="i">
+            <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="pageNumber">
+                <c:url value="/board/list" var="pageLink">
+                    <c:param name="page" value="${pageNumber}"></c:param>
+
+                </c:url>
                 <li class="page-item">
-                    <a href="" class="page-link">${i}</a>
+                    <a href="${pageLink}" class="page-link">${pageNumber}</a>
                 </li>
             </c:forEach>
             <li class="page-item">
                 <a class="page-link" href="#">Next</a>
             </li>
+
         </ul>
     </nav>
 </div>
