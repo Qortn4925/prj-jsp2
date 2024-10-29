@@ -37,13 +37,19 @@ public interface BoardMapper {
                         select * 
             from board
             order by id desc
-            limit 0,10
+            limit #{offset},10
             """)
-    List<Board> selectAll();
+    List<Board> selectAll(Integer offset);
 
     @Delete("""
             delete from board
             where id=#{id}
             """)
     int deleteById(Integer id);
+
+    @Select("""
+                select count(*)
+                from board 
+            """)
+    int countQuery();
 }

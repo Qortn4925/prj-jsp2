@@ -17,3 +17,10 @@ from jsp2.board;
 
 insert into board
 values (1, '제목', '내용입니다', '작성자');
+
+
+
+INSERT INTO board
+    (title, content, writer)
+select title, content, writer
+from board;

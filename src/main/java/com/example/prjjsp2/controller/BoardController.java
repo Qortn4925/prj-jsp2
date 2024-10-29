@@ -8,9 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("board")
@@ -66,12 +67,14 @@ public class BoardController {
     }
 
     @GetMapping("list")
-    public void list(Model model) {
+    public void list(Model model, @RequestParam(defaultValue = "1") Integer page) {
         // 요청이 들어오면 , 쿼리에서 > board 객체를 리스트에 받아서 넣음 . model에 추가 > 출력
 
 
         // 현재 페이지에 따라서 10개씩 출력하는 것들  > integer 변수 들어가줘야함
-        List<Board> boardList = boardService.selectAll();
-        model.addAttribute("boardList", boardList);
+        //
+        Map<String, Object> pageInfo = boardService.selectAll(page);
+
+        model.addAttribute("pageInfo", pageInfo);
     }
 }

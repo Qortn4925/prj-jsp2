@@ -32,7 +32,7 @@
                     <th scope="col">작성시간</th>
                 </tr>
                 <tbody>
-                <c:forEach items="${boardList}" var="board">
+                <c:forEach items="${pageInfo.boardList}" var="board">
                     <tr>
 
                         <td>
@@ -60,15 +60,11 @@
             <li class="page-item">
                 <a class="page-link" href="#">Previous</a>
             </li>
-            <li class="page-item">
-                <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">3</a>
-            </li>
+            <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="i">
+                <li class="page-item">
+                    <a href="" class="page-link">${i}</a>
+                </li>
+            </c:forEach>
             <li class="page-item">
                 <a class="page-link" href="#">Next</a>
             </li>
