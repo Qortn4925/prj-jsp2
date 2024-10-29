@@ -29,25 +29,44 @@
                         게시판 목록
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/board/create">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        게시판작성
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/member/create">
-                        <i class="fa-solid fa-user"></i>
-                        회원가입하기
-                    </a>
-                </li>
+                <c:if test="${not empty loggedInMember}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/board/create">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            게시판작성
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${empty loggedInMember}">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/member/create">
+                            <i class="fa-solid fa-user"></i>
+                            회원가입하기
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${not empty loggedInMember}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/member/list">
+                            <i class="fa-solid fa-users"></i>
+                            회원목록
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${empty loggedInMember}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/member/login">
+                            <i class="fa-solid fa-unlock-keyhole"></i>
+                            로그인
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${not empty loggedInMember}">
+                    <li class="nav-item">
+                        <a href="" class="nav-link"> 회원아이디 :${loggedInMember.id}</a>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/member/list">
-                        <i class="fa-solid fa-users"></i>
-                        회원목록
-                    </a>
-                </li>
+                    </li>
+                </c:if>
             </ul>
 
         </div>

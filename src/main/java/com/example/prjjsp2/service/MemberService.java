@@ -37,4 +37,9 @@ public class MemberService {
     public void updateMember(Member member) {
         mapper.updateMember(member);
     }
+
+    public Member login(String id, String password) {
+
+        return mapper.login(id, password);
+    }
 }

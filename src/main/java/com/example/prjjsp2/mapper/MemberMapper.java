@@ -44,4 +44,12 @@ public interface MemberMapper {
                        where id =#{id}
             """)
     int updateMember(Member member);
+
+    @Select("""
+                select  id,password
+                from member 
+                where id=#{id} and password=#{password}
+            """)
+    Member login(String id, String password);
+
 }

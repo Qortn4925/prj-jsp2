@@ -2,6 +2,7 @@ package com.example.prjjsp2.controller;
 
 import com.example.prjjsp2.dto.Member;
 import com.example.prjjsp2.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,9 +73,28 @@ public class MemberController {
         System.out.println("member = " + member);
         service.updateMember(member);
         rttr.addFlashAttribute("message", Map.of("type", "success", "text", "회원정보 수정완료"));
-
         return "redirect:/member/list";
+    }
 
+    @GetMapping("login")
+    public void login() {
+
+    }
+
+    @PostMapping("login")
+    public String login(String id, String password, RedirectAttributes rttr, HttpSession session) {
+
+        Member member = service.login(id, password);
+        // id 패스워드 받아서 , 일치하는게 있는지 확인하고 , 일치하면 ,  그 아이디로 member 받아오기
+        if (member == null) {
+            rttr.addFlashAttribute("message", Map.of("type", "success",
+                    "text", "잘못된 아이디 비밀번호를 입력하셨습니다."));
+            return "redirect:/member/login";
+        } else {
+            session.setAttribute("loggedInMember", member);
+            return "redirect:/member/list";
+        }
+        
     }
 
 }
