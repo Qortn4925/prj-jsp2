@@ -58,19 +58,28 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="#">Previous</a>
+                <c:url value="/board/list" var="pageLink1">
+                    <c:param name="page" value="${pageInfo.prevPageNumber}"></c:param>
+                </c:url>
+                <a class="page-link" href="${pageLink1}">Previous</a>
             </li>
+
+
             <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="pageNumber">
                 <c:url value="/board/list" var="pageLink">
                     <c:param name="page" value="${pageNumber}"></c:param>
-
                 </c:url>
                 <li class="page-item">
                     <a href="${pageLink}" class="page-link">${pageNumber}</a>
                 </li>
             </c:forEach>
+
+
             <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+                <c:url value="/board/list" var="pageLink2">
+                    <c:param name="page" value="${pageInfo.nextPageNumber}"></c:param>
+                </c:url>
+                <a class="page-link" href="${pageLink2}">Next</a>
             </li>
 
         </ul>

@@ -33,12 +33,18 @@ public class BoardService {
 
         int paging = mapper.countQuery();
 
-        Integer begin = (page / 10) * 10 + 1;
-        Integer end = (page / 10 + 1) * 10;
+
+        Integer end = ((page - 1) / 10 + 1) * 10;
+        Integer begin = end - 9;
         Integer offset = ((page - 1) * 10 + 1);
+        Integer prevPageNumber = begin - 1;
+        Integer nextPageNumber = end + 1;
+        
         List<Board> boardList = mapper.selectAll(offset);
         Map<String, Object> pageInfo = new HashMap<>();
 
+        pageInfo.put("prevPageNumber", prevPageNumber);
+        pageInfo.put("nextPageNumber", nextPageNumber);
         pageInfo.put("end", end);
         pageInfo.put("begin", begin);
         pageInfo.put("paging", paging);
