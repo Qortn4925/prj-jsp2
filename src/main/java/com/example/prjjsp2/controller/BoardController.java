@@ -29,6 +29,7 @@ public class BoardController {
     public String createBoard(Board board, RedirectAttributes rttr) {
         boardService.createBoard(board);
         rttr.addAttribute("id", board.getId());
+        rttr.addFlashAttribute("message", Map.of("type", "success", "text", "게시글 작성이 완료"));
         //id 넘기기
         return "redirect:/board/view";
     }
@@ -52,10 +53,13 @@ public class BoardController {
 
     //수정 까진 일단 완료
     @PostMapping("update")
-    public void updateBoard(Board board) {
+    public String updateBoard(Board board, RedirectAttributes rttr) {
         // 보드에서 > 모델 > 모델 >  다시 받아서
         System.out.println("board = " + board);
         boardService.updateById(board);
+
+        rttr.addFlashAttribute("message", Map.of("type", "success", "text", "게시글 수정 완료"));
+        return "redirect:/board/view?id=" + board.getId();
 
     }
 
@@ -63,6 +67,8 @@ public class BoardController {
     public String deleteBoard(Integer id, RedirectAttributes rttr) {
         System.out.println("id = " + id);
         boardService.delteById(id);
+        rttr.addFlashAttribute("message", Map.of("type", "success", "text", "게시글 삭제 완료"));
+
         return "redirect:/board/list";
     }
 

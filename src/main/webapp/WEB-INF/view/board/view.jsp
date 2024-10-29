@@ -18,6 +18,7 @@
 
 <form action="/board/delete" method="post">
     <div>
+        <h2> 게시글 </h2>
         <div class="input-group mb-3">
             <span class="input-group-text"> 제목 </span>
             <input readonly type="text" class="form-control" placeholder="게시글 제목을 작성해주세요" aria-label="Username"
