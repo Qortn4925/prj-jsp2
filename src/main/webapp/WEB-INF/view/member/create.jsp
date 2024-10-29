@@ -33,14 +33,15 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="textareaContent1" class="from-label"> 닉네임</label>
-                    <textarea name="nickName" id="textareaContent1" rows="10" class="form-control"></textarea>
+                    <label for="inputWriter1" class="form-label"> 닉네임</label>
+                    <input type="text" name="nickName" id="inputWriter1" class="form-control">
                 </div>
 
                 <div class="mb-3">
-                    <label for="inputWriter1" class="form-label"> 자기소개</label>
-                    <input type="text" name="description" id="inputWriter1" class="form-control">
+                    <label for="textareaContent1" class="from-label">자기소개</label>
+                    <textarea name="description" id="textareaContent1" rows="10" class="form-control"></textarea>
                 </div>
+
 
                 <div class="mb-3">
                     <button class="btn btn-dark">

@@ -17,4 +17,9 @@ public class MemberService {
         mapper.createMember(member);
 
     }
+
+    public Member selectById(String id) {
+
+        return mapper.selectId(id);
+    }
 }
