@@ -42,7 +42,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/member/list">
                         <i class="fa-solid fa-users"></i>
                         회원목록
                     </a>

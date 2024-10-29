@@ -25,7 +25,7 @@
             <table class="table table-dark table-striped-columns h-50 w-100">
                 <thead>
                 <tr>
-                 
+
                     <th scope="col">아이디</th>
                     <th scope="col">닉네임</th>
                     <th scope="col">자기소개</th>
@@ -35,7 +35,7 @@
                 <c:forEach items="${memberList}" var="member">
                     <tr>
                         <td>
-                            <a href="/board/view?id=${member.id}"> ${member.id}</a>
+                            <a href="/member/view?id=${member.id}"> ${member.id}</a>
                         </td>
                         <td>${member.nickName}</td>
                         <td>${member.description}</td>

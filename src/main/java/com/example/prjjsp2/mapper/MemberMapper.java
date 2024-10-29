@@ -37,4 +37,11 @@ public interface MemberMapper {
                 order by inserted;
             """)
     List<Member> getAllMember();
+
+    @Update("""
+                   update member
+                   set password=#{password},nick_name=#{nickName},description=#{description}
+                       where id =#{id}
+            """)
+    int updateMember(Member member);
 }

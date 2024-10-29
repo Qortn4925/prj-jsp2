@@ -33,4 +33,8 @@ public class MemberService {
     public List<Member> getAllMember() {
         return mapper.getAllMember();
     }
+
+    public void updateMember(Member member) {
+        mapper.updateMember(member);
+    }
 }

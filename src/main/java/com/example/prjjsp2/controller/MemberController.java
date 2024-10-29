@@ -54,8 +54,21 @@ public class MemberController {
         service.deleteMember(id);
 
         return "redirect:/member/list";
-
     }
 
+    @GetMapping("update")
+    public void update(String id, Model model) {
+        Member member = service.selectById(id);
+        
+        model.addAttribute("member", member);
+    }
+
+    @PostMapping("update")
+    public String update(String id, Member member, RedirectAttributes rttr, Model model) {
+        System.out.println("member = " + member);
+        service.updateMember(member);
+        return "redirect:/member/list";
+
+    }
 
 }
