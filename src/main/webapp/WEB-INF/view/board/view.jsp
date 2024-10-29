@@ -36,6 +36,7 @@
         <div class="input-group">
             <input readonly type="datetime-local" name="inserted" value="${board.inserted}">
         </div>
+
         <div class="d-flex justify-content-center">
             <button class="btn btn-outline-danger"> 삭제</button>
             <a class="btn btn-dark" href="/board/update?id=${board.id}">수정</a>

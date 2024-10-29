@@ -20,7 +20,7 @@
 
             <h2 class="my-3">회원 가입 작성</h2>
 
-            <form action="" method="post">
+            <form action="/member/delete" method="post">
                 <div class="mb-3">
                     <label for="inputTitle1" class="form-label"> id</label>
                     <input type="text" id="inputTitle1" name="id" class="form-control" value="${member.id}">
@@ -44,15 +44,16 @@
                               class="form-control">${member.description}</textarea>
                 </div>
 
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-outline-danger"> 삭제</button>
+                    <%--                     수정할때 뭘 수정할지 모르니까 , 쿼리스트링에 id값 붙여서 넘겨주기--%>
+                    <a class="btn btn-dark" href="/board/update?id=${member.id}">수정</a>
 
-                <div class="mb-3">
-                    <button class="btn btn-dark">
-                        <i class="fa-solid fa-floppy-disk"> 회원가입</i>
-                    </button>
+                    <%--            id 전송하기 , 삭제할때 포스트 방식으로 , 삭제할 id값 넘겨주는 행위--%>
+           
                 </div>
+
             </form>
-
-
         </div>
     </div>
 </div>

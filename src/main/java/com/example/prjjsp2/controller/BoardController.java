@@ -77,4 +77,6 @@ public class BoardController {
 
         model.addAttribute("pageInfo", pageInfo);
     }
+
+
 }
