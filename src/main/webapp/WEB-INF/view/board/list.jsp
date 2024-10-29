@@ -57,12 +57,14 @@
 <div class=" d-flex justify-content-center">
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item">
-                <c:url value="/board/list" var="pageLink1">
-                    <c:param name="page" value="${pageInfo.prevPageNumber}"></c:param>
-                </c:url>
-                <a class="page-link" href="${pageLink1}">Previous</a>
-            </li>
+            <c:if test="${pageInfo.hasPrev}">
+                <li class="page-item">
+                    <c:url value="/board/list" var="pageLink1">
+                        <c:param name="page" value="${pageInfo.prevPageNumber}"></c:param>
+                    </c:url>
+                    <a class="page-link" href="${pageLink1}">Previous</a>
+                </li>
+            </c:if>
 
 
             <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="pageNumber">
@@ -75,12 +77,14 @@
             </c:forEach>
 
 
-            <li class="page-item">
-                <c:url value="/board/list" var="pageLink2">
-                    <c:param name="page" value="${pageInfo.nextPageNumber}"></c:param>
-                </c:url>
-                <a class="page-link" href="${pageLink2}">Next</a>
-            </li>
+            <c:if test="${pageInfo.hasNext}">
+                <li class="page-item">
+                    <c:url value="/board/list" var="pageLink2">
+                        <c:param name="page" value="${pageInfo.nextPageNumber}"></c:param>
+                    </c:url>
+                    <a class="page-link" href="${pageLink2}">Next</a>
+                </li>
+            </c:if>
 
         </ul>
     </nav>

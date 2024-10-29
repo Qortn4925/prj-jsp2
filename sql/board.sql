@@ -12,7 +12,7 @@ create table board
 );
 
 
-select *
+select count(*)
 from jsp2.board;
 
 insert into board

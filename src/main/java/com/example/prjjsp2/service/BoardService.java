@@ -32,20 +32,32 @@ public class BoardService {
     public Map<String, Object> selectAll(Integer page) {
 
         int paging = mapper.countQuery();
-
-
+        int maxPage = paging / 10 + 1;
         Integer end = ((page - 1) / 10 + 1) * 10;
         Integer begin = end - 9;
         Integer offset = ((page - 1) * 10 + 1);
+
         Integer prevPageNumber = begin - 1;
         Integer nextPageNumber = end + 1;
-        
-        List<Board> boardList = mapper.selectAll(offset);
-        Map<String, Object> pageInfo = new HashMap<>();
 
+        boolean hasPrev = prevPageNumber > 0;
+        boolean hasNext = nextPageNumber < maxPage;
+
+        Map<String, Object> pageInfo = new HashMap<>();
+        // 다음버튼이 없을때 > 즉 마지막 페이징 분할
+        if (!hasNext) {
+            pageInfo.put("end", maxPage);
+        } else {
+            pageInfo.put("end", end);
+        }
+
+        List<Board> boardList = mapper.selectAll(offset);
+
+        pageInfo.put("hasPrev", hasPrev);
+        pageInfo.put("hasNext", hasNext);
         pageInfo.put("prevPageNumber", prevPageNumber);
         pageInfo.put("nextPageNumber", nextPageNumber);
-        pageInfo.put("end", end);
+
         pageInfo.put("begin", begin);
         pageInfo.put("paging", paging);
         pageInfo.put("boardList", boardList);
