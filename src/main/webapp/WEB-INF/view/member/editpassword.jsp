@@ -13,51 +13,58 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<c:import url="/WEB-INF/fragment/navbar.jsp"/>
+<c:import url="../../fragment/navbar.jsp"/>
+
+<c:if test="${!access}">
+    <div class="alert alert-warning" role="alert">
+        <h3> 허가받지 못한 사용자입니다. 로그인 화면으로 돌아가 주세요</h3>
+    </div>
+</c:if>
 
 
-<div class="d-flex flex-row justify-content-center">
-
-    <div class="d-flex flex-column mb-2"><h2>로그인 페이지</h2>
-
-
-        <form action="" method="post">
+<c:if test="${access}">
+    <div class="container">
+        <div class="">
             <div class="row g-3 align-items-center">
-                <div class="col-auto">
-                    <label for="inputId1" class="col-form-label p-4">Id</label>
-                </div>
-                <div class="col-auto">
-                    <input name="id" type="password" id="inputId1" class="form-control" aria-describedby="IdhelpInline">
-                </div>
-                <div class="col-auto">
-    <span id="IdhelpInline" class="form-text">
-      Must be 8-20 characters long.
-    </span>
-                </div>
-            </div>
-
-            <div class="row g-3 align-items-center">
+                <h3> ${param.id}님의 비밀번호 변경창</h3>
                 <div class="col-auto">
                     <label for="inputPassword6" class="col-form-label">Password</label>
                 </div>
                 <div class="col-auto">
-                    <input name="password" type="password" id="inputPassword6" class="form-control"
+                    <input value="${password}" name="password" type="password" id="inputPassword6" class="form-control"
                            aria-describedby="passwordHelpInline">
                 </div>
                 <div class="col-auto">
                 <span id="passwordHelpInline" class="form-text">
-                  Must be 8-20 characters long.
+                  기존에 사용하던 비밀번호입니다.
                 </span>
                 </div>
             </div>
-            <div>
-                <button class="btn btn-secondary">로그인</button>
-                <a class="btn btn-dark" href="/member/create"> 회원가입하기</a>
-            </div>
-        </form>
-    </div>
-</div>
 
+            <form action="/member/editpassword" method="post">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="inputPassword7" class="col-form-label">Password</label>
+                    </div>
+                    <div class="col-auto">
+                        <input name="updatePassword" type="password" id="inputPassword7" class="form-control"
+                               aria-describedby="passwordHelpInline">
+                    </div>
+                    <div class="col-auto">
+                <span id="passwordHelpInline1" class="form-text">
+                 변경하실 비빈번호를 입력해주세요
+                </span>
+                    </div>
+                </div>
+                <div>
+                    <input type="hidden" name="id" value="${param.id}">
+                    <button class="btn btn-outline-dark"> 변경</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</c:if>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -65,6 +72,5 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
-
 </body>
 </html>

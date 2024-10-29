@@ -34,7 +34,8 @@
 
                 <div class="mb-3">
                     <label for="inputWriter1" class="form-label"> 작성자</label>
-                    <input type="text" name="writer" id="inputWriter1" class="form-control">
+                    <input readonly type="text" name="writer" id="inputWriter1" class="form-control"
+                           value="${loggedInMember.nickName}">
                 </div>
 
                 <div class="mb-3">
@@ -43,8 +44,7 @@
                     </button>
                 </div>
             </form>
-
-
+            
         </div>
     </div>
 </div>

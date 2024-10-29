@@ -29,7 +29,7 @@
 
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label"> password</label>
-                    <input type="text" id="inputPassword" name="password" class="form-control"
+                    <input readonly type="text" id="inputPassword" name="password" class="form-control"
                            value="${member.password}">
                 </div>
 

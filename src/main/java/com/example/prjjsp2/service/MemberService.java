@@ -42,4 +42,9 @@ public class MemberService {
 
         return mapper.login(id, password);
     }
+
+    public boolean changePassword(String id, String updatePassword) {
+        int cnt = mapper.changePw(id, updatePassword);
+        return cnt == 1;
+    }
 }

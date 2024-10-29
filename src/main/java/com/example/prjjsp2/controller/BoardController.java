@@ -1,14 +1,12 @@
 package com.example.prjjsp2.controller;
 
 import com.example.prjjsp2.dto.Board;
+import com.example.prjjsp2.dto.Member;
 import com.example.prjjsp2.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
@@ -21,13 +19,16 @@ public class BoardController {
 
 
     @GetMapping("create")
-    public void create() {
+    public void create(@SessionAttribute("loggedInMember") Member member, Model model) {
+        model.addAttribute("loggedInMember", member);
+        System.out.println("member.getNickName() = " + member.getNickName());
 
     }
 
     @PostMapping("create")
     public String createBoard(Board board, RedirectAttributes rttr) {
         boardService.createBoard(board);
+        System.out.println("board = " + board);
         rttr.addAttribute("id", board.getId());
         rttr.addFlashAttribute("message", Map.of("type", "success", "text", "게시글 작성이 완료"));
         //id 넘기기

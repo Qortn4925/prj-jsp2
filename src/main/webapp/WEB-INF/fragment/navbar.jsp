@@ -64,7 +64,12 @@
                 <c:if test="${not empty loggedInMember}">
                     <li class="nav-item">
                         <a href="" class="nav-link"> 회원아이디 :${loggedInMember.id}</a>
+                    </li>
+                </c:if>
 
+                <c:if test="${not empty loggedInMember}">
+                    <li class="nav-item">
+                        <a href="/member/logout" class="nav-link"> 로그아웃 :${loggedInMember.id}</a>
                     </li>
                 </c:if>
             </ul>

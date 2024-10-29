@@ -14,6 +14,7 @@
 </head>
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
+<c:set value="${loggedInMember.nickName==board.writer}" var="access"/>
 
 
 <form action="/board/delete" method="post">
@@ -38,14 +39,16 @@
             <input readonly type="datetime-local" name="inserted" value="${board.inserted}">
         </div>
 
-        <div class="d-flex justify-content-center">
-            <button class="btn btn-outline-danger"> 삭제</button>
-            <a class="btn btn-dark" href="/board/update?id=${board.id}">수정</a>
 
-            <%--            id 전송하기--%>
-            <input type="hidden" name="id" value="${board.id}">
-        </div>
+        <c:if test="${access}">
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-outline-danger"> 삭제</button>
+                <a class="btn btn-dark" href="/board/update?id=${board.id}">수정</a>
 
+                    <%--            id 전송하기--%>
+                <input type="hidden" name="id" value="${board.id}">
+            </div>
+        </c:if>
 
     </div>
     </div>
