@@ -46,10 +46,15 @@ public class BoardController {
 
     //그냥 jsp 보여주는 용도
     @GetMapping("update")
-    public void updateBoard(Integer id, Model model) {
+    public void updateBoard(Integer id, Model model, @SessionAttribute("loggedInMember") Member member) {
 //        받아서 출력
         Board board = boardService.getId(id);
+        boolean access = member != null && member.getNickName().equals(board.getWriter());
+        if (access) {
+            model.addAttribute("auth", access);
+        }
         model.addAttribute("board", board);
+
     }
 
     //수정 까진 일단 완료
