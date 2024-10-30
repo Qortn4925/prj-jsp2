@@ -30,7 +30,6 @@ public class BoardService {
     }
 
     public Map<String, Object> selectAll(Integer page) {
-
         int paging = mapper.countQuery();
         int maxPage = paging / 10 + 1;
         Integer end = ((page - 1) / 10 + 1) * 10;

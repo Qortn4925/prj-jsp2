@@ -13,3 +13,18 @@ create table member
 select *
 from member;
 
+
+CREATE TABLE auth
+(
+    id   VARCHAR(50) REFERENCES member (id),
+    name VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id, name)
+);
+
+INSERT INTO auth
+    (id, name)
+VALUES ('admin', 'admin'),
+       ('bdmin', 'admin');
+
+select *
+from auth;

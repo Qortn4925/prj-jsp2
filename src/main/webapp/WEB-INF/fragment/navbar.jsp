@@ -12,6 +12,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
+<c:set value="${sessionScope.loggedInMember.auth.contains('admin')}" var="isAdmin"/>
 
 <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
@@ -45,7 +46,8 @@
                         </a>
                     </li>
                 </c:if>
-                <c:if test="${not empty loggedInMember}">
+
+                <c:if test="${(not empty loggedInMember) &&isAdmin}">
                     <li class="nav-item">
                         <a class="nav-link" href="/member/list">
                             <i class="fa-solid fa-users"></i>
@@ -53,6 +55,7 @@
                         </a>
                     </li>
                 </c:if>
+
                 <c:if test="${empty loggedInMember}">
                     <li class="nav-item">
                         <a class="nav-link" href="/member/login">

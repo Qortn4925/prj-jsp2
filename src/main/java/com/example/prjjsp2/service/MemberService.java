@@ -40,7 +40,15 @@ public class MemberService {
 
     public Member login(String id, String password) {
 
-        return mapper.login(id, password);
+        Member member = mapper.login(id, password);
+
+        if (member == null) {
+            return null;
+        } else {
+            List<String> authList = mapper.selectAuthById(id);
+            member.setAuth(authList);
+            return member;
+        }
     }
 
     public boolean changePassword(String id, String updatePassword) {

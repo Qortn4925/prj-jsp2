@@ -59,5 +59,10 @@ public interface MemberMapper {
             """)
     int changePw(String id, String updatePassword);
 
-
+    @Select("""
+            SELECT name
+            FROM auth
+            WHERE id = #{id}
+            """)
+    List<String> selectAuthById(String id);
 }
