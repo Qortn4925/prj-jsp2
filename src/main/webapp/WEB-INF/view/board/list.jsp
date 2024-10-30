@@ -24,7 +24,6 @@
             <table class="table table-dark table-striped-columns h-50 w-100">
                 <thead>
                 <tr>
-
                     <th>게시글 번호</th>
                     <th scope="col">제목</th>
                     <th scope="col">내용</th>
@@ -34,7 +33,6 @@
                 <tbody>
                 <c:forEach items="${pageInfo.boardList}" var="board">
                     <tr>
-
                         <td>
                             <a href="/board/view?id=${board.id}"> ${board.id}</a>
                         </td>
@@ -50,6 +48,26 @@
 
         </div>
     </div>
+</div>
+<div class="container my-3">
+    <form class="row justify-content-center g-1">
+        <div class="col-auto">
+            <select name="searchTarget" id="select1" class="form-select">
+                <option value="all">전체</option>
+                <option value="title">제목</option>
+                <option value="content">본문</option>
+                <option value="writer">작성자</option>
+            </select>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+            <input type="text" class="form-control" name="keyword">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-outline-primary h-100">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </form>
 </div>
 
 <%-- 페이지네이셩  todo--%>

@@ -79,13 +79,16 @@ public class BoardController {
     }
 
     @GetMapping("list")
-    public void list(Model model, @RequestParam(defaultValue = "1") Integer page) {
+    public void list(Model model, @RequestParam(defaultValue = "1") Integer page,
+                     @RequestParam(required = false) String searchTarget,
+                     @RequestParam(defaultValue = "") String keyword
+    ) {
         // 요청이 들어오면 , 쿼리에서 > board 객체를 리스트에 받아서 넣음 . model에 추가 > 출력
 
 
         // 현재 페이지에 따라서 10개씩 출력하는 것들  > integer 변수 들어가줘야함
         //
-        Map<String, Object> pageInfo = boardService.selectAll(page);
+        Map<String, Object> pageInfo = boardService.selectAll(page, searchTarget, keyword);
 
         model.addAttribute("pageInfo", pageInfo);
     }

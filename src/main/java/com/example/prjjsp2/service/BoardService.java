@@ -29,8 +29,8 @@ public class BoardService {
         mapper.updateById(board);
     }
 
-    public Map<String, Object> selectAll(Integer page) {
-        int paging = mapper.countQuery();
+    public Map<String, Object> selectAll(Integer page, String searchTarget, String keyword) {
+        int paging = mapper.countQuery(searchTarget, keyword);
         int maxPage = paging / 10 + 1;
         Integer end = ((page - 1) / 10 + 1) * 10;
         Integer begin = end - 9;
@@ -50,7 +50,7 @@ public class BoardService {
             pageInfo.put("end", end);
         }
 
-        List<Board> boardList = mapper.selectAll(offset);
+        List<Board> boardList = mapper.selectAll(offset, searchTarget, keyword);
 
         pageInfo.put("hasPrev", hasPrev);
         pageInfo.put("hasNext", hasNext);
@@ -67,4 +67,5 @@ public class BoardService {
         mapper.deleteById(id);
 
     }
+    
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -47,9 +46,16 @@ public class MemberController {
     }
 
     @GetMapping("list")
-    public void list(Model model) {
-        List<Member> memberList = service.getAllMember();
-        model.addAttribute("memberList", memberList);
+    public String list(Model model, @SessionAttribute(value = "loggedInMember", required = false) Member member,
+                       RedirectAttributes rttr) {
+        if (member != null && member.getAuth().contains("admin")) {
+            model.addAttribute("memberList", service.getAllMember());
+            return null;
+        } else {
+            rttr.addFlashAttribute("message", Map.of("type", "warning",
+                    "text", "관리자만 회원 목록을 볼 수 있습니다."));
+            return "redirect:/member/login";
+        }
     }
 
     @PostMapping("delete")

@@ -34,12 +34,26 @@ public interface BoardMapper {
     int updateById(Board board);
 
     @Select("""
-                        select * 
-            from board
-            order by id desc
-            limit #{offset},10
+            
+            <script>
+                                              SELECT *
+                                              FROM board
+                                              <trim prefix="WHERE" prefixOverrides="OR">
+                                                  <if test="searchTarget == 'all' or searchTarget == 'title'">
+                                                      title LIKE CONCAT('%', #{keyword}, '%')
+                                                  </if>
+                                                  <if test="searchTarget == 'all' or searchTarget == 'content'">
+                                                      OR content LIKE CONCAT('%', #{keyword}, '%')
+                                                  </if>
+                                                  <if test="searchTarget == 'all' or searchTarget == 'writer'">
+                                                      OR writer LIKE CONCAT('%', #{keyword}, '%')
+                                                  </if>
+                                              </trim>
+                                              ORDER BY id DESC
+                                              LIMIT #{offset}, 10
+            </script>
             """)
-    List<Board> selectAll(Integer offset);
+    List<Board> selectAll(Integer offset, String searchTarget, String keyword);
 
     @Delete("""
             delete from board
@@ -48,8 +62,21 @@ public interface BoardMapper {
     int deleteById(Integer id);
 
     @Select("""
-                select count(*)
-                from board 
+             <script>
+            
+                                           SELECT COUNT(id) FROM board
+                                           <trim prefix="WHERE" prefixOverrides="OR">
+                                               <if test="searchTarget == 'all' or searchTarget == 'title'">
+                                                   title LIKE CONCAT('%', #{keyword}, '%')
+                                               </if>
+                                               <if test="searchTarget == 'all' or searchTarget == 'content'">
+                                                   OR content LIKE CONCAT('%', #{keyword}, '%')
+                                               </if>
+                                               <if test="searchTarget == 'all' or searchTarget == 'writer'">
+                                                   OR writer LIKE CONCAT('%', #{keyword}, '%')
+                                               </if>
+                                           </trim>
+                                       </script>
             """)
-    int countQuery();
+    int countQuery(String searchTarget, String keyword);
 }
